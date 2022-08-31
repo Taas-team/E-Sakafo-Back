@@ -5,7 +5,9 @@ info:
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://taas-book.herokuapp.com/
+    url: https://virtserver.swaggerhub.com/HEI-Franklin/E-Sakafo/1.0.0
+  - description: serveur
+    url: https://e-sakafo.mh/
 paths:
   /ping:
     get:
@@ -142,7 +144,7 @@ paths:
                     "contact": "0343795689",
                     "address" : "ivandry",
                     "order_date" : "01-09-2022 12:00:00",
-                    "status" : true
+                    "status" : "DELIVRED"
                     },
                      {
                       "id": 2,
@@ -154,7 +156,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : false
+                      "status" : "DELIVRED"
                     }, {
                       "id": 3,
                       "ref": "REF-3",
@@ -165,7 +167,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                     },
                      {
                       "id": 4,
@@ -177,7 +179,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : false
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 5,
@@ -189,7 +191,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 6,
@@ -201,7 +203,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 7,
@@ -213,7 +215,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : false
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 8,
@@ -225,7 +227,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 9,
@@ -237,7 +239,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 10,
@@ -249,7 +251,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    },
                    {
                       "id": 11,
@@ -261,7 +263,7 @@ paths:
                       "contact": "0343795689",
                       "address" : "ivandry",
                       "order_date" : "01-09-2022 12:00:00",
-                      "status" : true
+                      "status" : "IN_PGOGRESS"
                    }
                   ]
         '400':
@@ -284,7 +286,6 @@ paths:
         content:
           application/json:
             schema:
-              type: object
               $ref: '#/components/schemas/NewOrders'
             examples: 
                 foo:
@@ -434,6 +435,7 @@ paths:
                     "contact": "0343795689",
                     "address" : "ivandry",
                     "order_date" : "01-09-2022 12:00:00",
+                    "order_number": 30,
                     "status" : true
                   }
         '400':
@@ -472,6 +474,7 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },
                     {
@@ -479,54 +482,63 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 3,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 4,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 5,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 6,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 7,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 8,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 9,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     },{
                       "id": 10,
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     }]
         '400':
@@ -576,6 +588,7 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 0,
                       "quantity": 100
                     }
         '400':
@@ -617,6 +630,7 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     }
               
@@ -646,7 +660,8 @@ paths:
         * "name": "Gratin",
         * "price": 1000,
         * "category": "Entrée",
-        * "quantity": 100
+        * "quantity": 100,
+        * "order_number": 30
       requestBody:
         content:
           application/json:
@@ -660,6 +675,7 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     }
       responses:
@@ -678,6 +694,7 @@ paths:
                       "name": "Gratin",
                       "price": 1000,
                       "category": "Entrée",
+                      "order_number": 30,
                       "quantity": 100
                     }
         '400':
@@ -689,7 +706,181 @@ paths:
         '429':
           $ref: '#/components/responses/429'
         '500':
-          $ref: '#/components/responses/500'                     
+          $ref: '#/components/responses/500'
+
+  /Categories:
+    get:
+      tags:
+        - "Category"
+      summary: Get all categories
+      description: Get a list of all categories
+      operationId: getAllCategories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+              examples: 
+                foo:
+                  summary: A categories example
+                  value: [
+                    {
+                      "id": 1,
+                      "label": "Entrée"
+                    },{
+                      "id": 2,
+                      "label": "dessert"
+                    },{
+                      "id": 3,
+                      "label": "resistance"
+                    }]
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - "Category"   
+      summary: Create new category
+      operationId: createCategory
+      requestBody:
+        description: Create category
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newCategory'
+            examples: 
+                foo:
+                  summary: A categories example
+                  value:
+                    {
+                      "label": "Entrée"
+                    }
+      responses:
+        200: 
+          description: Success
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Category'
+              examples: 
+                foo:
+                  summary: A categories example
+                  value:
+                    {
+                      "id": 1,
+                      "label": "Entrée"
+                    }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'          
+  /categories/{id}:
+    get:
+      tags:
+        - "Category"
+      summary: Get Category by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Get category referenced by id 
+      operationId: getCategoryById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+              examples: 
+                foo:
+                  summary: A categories example
+                  value:
+                    {
+                      "id": 1,
+                      "label": "Entrée"
+                    }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    patch: 
+      tags:
+        - "Category"
+      summary: Modify the Category details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: UpdateCategoryDetails
+      description: |
+        Possible changes on:
+        * label: update label
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/newCategory'
+            examples: 
+                foo:
+                  summary: A categories example
+                  value:
+                    {
+                      "label": "Entrée"
+                    }
+      responses:
+        200: 
+          description: category edited
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Category'
+              examples: 
+                foo:
+                  summary: A categories example
+                  value:
+                    {
+                      "id": 1,
+                      "label": "Entrée"
+                    }
+        '400':
+            $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
 components:
   schemas:
     Admin:
@@ -763,7 +954,7 @@ components:
         address: 
           type: string
         status: 
-          type: boolean
+          type: string
 
     Dish:
       type: object
@@ -776,6 +967,8 @@ components:
           type: number
         category:
           type: string
+        order_number:
+          type: number
         quantity:
           type: number
 
@@ -790,6 +983,20 @@ components:
           type: string
         quantity:
           type: number
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+
+    newCategory:
+      type: object
+      properties:
+        label:
+          type: string
 
     Page:
       type: integer
