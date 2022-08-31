@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import mg.esakafo.taas.dto.CreateDishDto;
 import mg.esakafo.taas.dto.UpdateDishDto;
-import mg.esakafo.taas.model.Dish;
+import mg.esakafo.taas.mapper.DishMapper;
+import mg.esakafo.taas.mapper.Rest.RestDish;
 import mg.esakafo.taas.service.DishService;
 
 @RestController
@@ -21,29 +22,30 @@ import mg.esakafo.taas.service.DishService;
 @AllArgsConstructor
 public class DishController {
     private final DishService dishService;
+    private final DishMapper dishMapper;
 
     @GetMapping
-    public List<Dish> getAllDishes(){
-        return dishService.getAllDishes();
+    public List<RestDish> getAllDishes(){
+        return dishService.getAllDishes().stream().map(dishMapper::toRest).toList();
     }
 
     @GetMapping(path = "{dishId}")
-    public Dish getDishById(@PathVariable("dishId") Long dishId){
-        return dishService.getDishById(dishId);
+    public RestDish getDishById(@PathVariable("dishId") Long dishId){
+        return dishMapper.toRest(dishService.getDishById(dishId));
     }
 
     @PostMapping
-    public Dish createDish(
+    public RestDish createDish(
         @RequestBody CreateDishDto createDishDto
     ){
-        return dishService.createDish(createDishDto);
+        return dishMapper.toRest(dishService.createDish(createDishDto));
     }
 
     @PutMapping(path = "{dishId}")
-    public Dish updateDishDetails(
+    public RestDish updateDishDetails(
         @PathVariable("dishId") Long dishId,
         @RequestBody UpdateDishDto updateDishDto
     ){
-        return dishService.updateDishDetails(dishId, updateDishDto);
+        return dishMapper.toRest(dishService.updateDishDetails(dishId, updateDishDto));
     }
 }
