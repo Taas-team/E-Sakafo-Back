@@ -1,0 +1,869 @@
+openapi: 3.0.1
+info:
+  title: E-Sakafo
+  version: 1.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://taas-book.herokuapp.com/
+paths:
+  /ping:
+    get:
+      responses:
+        200 :
+          description: pong
+  /registration:
+    post:
+      tags:
+        - "Auth"
+      summary: Add new Admin
+      operationId: addNewAdmin       
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Admin'
+            examples: 
+                foo:
+                  summary: info admin exemple
+                  value: {
+                    "name": "Franklin Hyriol",
+                    "username": "franklin15",
+                    "password": "fr@12345"
+                  }
+
+      responses:
+        200:
+          description: Succes
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                foo:
+                  summary: message exemple
+                  value: {
+                    "message": "user create succes"
+                  }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '500':
+          $ref: '#/components/responses/500' 
+  /signin:
+    post:
+      tags:
+        - "Auth"
+      summary: Login using username and password
+      operationId: signIn        
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login'
+            examples: 
+                foo:
+                  summary: info login exemple
+                  value: {
+                    "username": "franklin15",
+                    "password": "fr@12345"
+                  }
+      responses:
+        200:
+          description: Logged in
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  token:
+                    type: string
+              examples:
+                foo:
+                  summary: token (bearer)
+                  value: {
+                    "token": "user create succes"
+                  }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+  /orders:
+    get:
+      tags:
+        - "Order"
+      summary: Get all orders
+      description: Get a list of all orders
+      operationId: getAllOrders
+      parameters:
+        - name: page
+          in: query
+          schema:
+            $ref: '#/components/schemas/Page'
+        - name: page_size
+          in: query
+          schema:
+            $ref: '#/components/schemas/PageSize'
+        - name: ref
+          in: query
+          description: "Filter orders by ref, case is ignored"
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Orders'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value: [
+                    {
+                    "id": 1,
+                    "ref": "REF-1",
+                    "category": "Entrée",
+                    "dish": "Gratin",
+                    "quantity": 2,
+                    "client_name": "Franklin Hyriol",
+                    "contact": "0343795689",
+                    "address" : "ivandry",
+                    "order_date" : "01-09-2022 12:00:00",
+                    "status" : true
+                    },
+                     {
+                      "id": 2,
+                      "ref": "REF-2",
+                      "category": Resistance",
+                      "dish": "Poulet",
+                      "quantity": 1,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : false
+                    }, {
+                      "id": 3,
+                      "ref": "REF-3",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 1,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                    },
+                     {
+                      "id": 4,
+                      "ref": "REF-4",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 3,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : false
+                   },
+                   {
+                      "id": 5,
+                      "ref": "REF-5",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   },
+                   {
+                      "id": 6,
+                      "ref": "REF-6",
+                      "category": "Resistance",
+                      "dish": "Poulet",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   },
+                   {
+                      "id": 7,
+                      "ref": "REF-7",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : false
+                   },
+                   {
+                      "id": 8,
+                      "ref": "REF-8",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   },
+                   {
+                      "id": 9,
+                      "ref": "REF-9",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   },
+                   {
+                      "id": 10,
+                      "ref": "REF-10",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   },
+                   {
+                      "id": 11,
+                      "ref": "REF-11",
+                      "category": "Entrée",
+                      "dish": "Gratin",
+                      "quantity": 2,
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "order_date" : "01-09-2022 12:00:00",
+                      "status" : true
+                   }
+                  ]
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - "Order"   
+      summary: Make a new orders
+      operationId: createOrder
+      requestBody:
+        description: order schema
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/NewOrders'
+            examples: 
+                foo:
+                  summary: A orders example
+                  value: {
+                      "client_name": "Franklin Hyriol",
+                      "contact": "0343795689",
+                      "address" : "ivandry",
+                      "dish": "Gratin",
+                      "quantity": 2
+                    }    
+      responses:
+        200: 
+          description: Success
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Orders'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value: {
+                    "id": 99,
+                    "ref": "REF-99",
+                    "category": "Entrée",
+                    "dish": "Gratin",
+                    "quantity": 2,
+                    "client_name": "Franklin Hyriol",
+                    "contact": "0343795689",
+                    "address" : "ivandry",
+                    "order_date" : "01-09-2022 12:00:00",
+                    "status" : true
+                  }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+  /orders/{id}:
+    get:
+      tags:
+        - "Order"
+      summary: Get order by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Get order referenced by id 
+      operationId: getOrderById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orders'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value: {
+                    "id": 1,
+                    "ref": "REF-1",
+                    "category": "Entrée",
+                    "dish": "Gratin",
+                    "quantity": 2,
+                    "client_name": "Franklin Hyriol",
+                    "contact": "0343795689",
+                    "address" : "ivandry",
+                    "order_date" : "01-09-2022 12:00:00",
+                    "status" : true
+                  }
+              
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    patch: 
+      tags:
+        - "Order"
+      summary: Modify the Order's details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: UpdateOrderDetails
+      description: |
+        Possible changes on:
+        * "category": "Entrée",
+        * "dish": "Gratin",
+        * "quantity": 2,
+        * "client_name": "Franklin Hyriol",
+        * "contact": "0343795689",
+        * "address" : "ivandry",
+        * "status" : "En cours"
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/UpdateOrders'
+            examples: 
+                foo:
+                  summary: Exemple value
+                  value: {
+                    "category": "Entrée",
+                    "dish": "Gratin",
+                    "quantity": 2,
+                    "client_name": "Franklin Hyriol",
+                    "contact": "0343795689",
+                    "address" : "ivandry",
+                    "status" : true
+                  }
+            
+      responses:
+        200: 
+          description: book edited
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Orders'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value: {
+                    "id": 1,
+                    "ref": "REF-1",
+                    "category": "Entrée",
+                    "dish": "Gratin",
+                    "quantity": 2,
+                    "client_name": "Franklin Hyriol",
+                    "contact": "0343795689",
+                    "address" : "ivandry",
+                    "order_date" : "01-09-2022 12:00:00",
+                    "status" : true
+                  }
+        '400':
+            $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /dishes:
+    get:
+      tags:
+        - "Dish"
+      summary: Get all dishes
+      description: Get a list of all dishes
+      operationId: getAlldishes
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dish'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value: [
+                    {
+                      "id": 1,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },
+                    {
+                      "id": 2,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 3,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 4,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 5,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 6,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 7,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 8,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 9,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    },{
+                      "id": 10,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }]
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - "Dish"   
+      summary: Create new Dish
+      operationId: createDish
+      requestBody:
+        description: Create Dish
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDish'
+            examples: 
+                foo:
+                  summary: A orders example
+                  value:
+                    {
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }
+      responses:
+        200: 
+          description: Success
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Dish'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value:
+                    {
+                      "id": 99,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'          
+  /dishes/{id}:
+    get:
+      tags:
+        - "Dish"
+      summary: Get dishes by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Get dishes referenced by id 
+      operationId: getdishesById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value:
+                    {
+                      "id": 1,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }
+              
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    patch: 
+      tags:
+        - "Dish"
+      summary: Modify the Dish details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: UpdateDishDetails
+      description: |
+        Possible changes on:
+        * "name": "Gratin",
+        * "price": 1000,
+        * "category": "Entrée",
+        * "quantity": 100
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/NewDish'
+            examples: 
+                foo:
+                  summary: A orders example
+                  value:
+                    {
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }
+      responses:
+        200: 
+          description: category edited
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Dish'
+              examples: 
+                foo:
+                  summary: A orders example
+                  value:
+                    {
+                      "id": 1,
+                      "name": "Gratin",
+                      "price": 1000,
+                      "category": "Entrée",
+                      "quantity": 100
+                    }
+        '400':
+            $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'                     
+components:
+  schemas:
+    Admin:
+      type: object
+      properties:
+        name:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+
+    login:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    Orders:
+      type: object  
+      properties:
+        id:
+          type: number
+        ref:
+          type: string
+        category:
+          type: string
+        dish:
+          type : string
+        quantity:
+          type: number
+        client_name:
+          type: string
+        contact:
+          type: string
+        address: 
+          type: string
+        order_date:
+          type: string
+        status: 
+          type: boolean
+    
+    NewOrders:
+      properties:
+        client_name:
+          type: string
+        contact:
+          type: string
+        address: 
+          type: string
+        dish:
+          type : string
+        quantity:
+          type: number
+
+    UpdateOrders:
+      type: object  
+      properties:
+        category:
+          type: string
+        dish:
+          type : string
+        quantity:
+          type: number
+        client_name:
+          type: string
+        contact:
+          type: string
+        address: 
+          type: string
+        status: 
+          type: boolean
+
+    Dish:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        quantity:
+          type: number
+
+    NewDish:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        quantity:
+          type: number
+
+    Page:
+      type: integer
+      description: Start at `1`
+    PageSize:
+      type: integer
+      description: Cannot exceed `500`
+
+    Exception:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+    BadRequestException:
+      allOf:
+        - $ref: '#/components/schemas/Exception'
+      example:
+        type: BadRequestException
+        message: Bad request
+    NotAuthorizedException:
+      allOf:
+        - $ref: '#/components/schemas/Exception'
+      example:
+        type: NotAuthorizedException
+        message: Not authorized
+    ResourceNotFoundException:
+      allOf:
+        - $ref: '#/components/schemas/Exception'
+      example:
+        type: ResourceNotFoundException
+        message: Resource of this drink or cocktail identified by id not found
+    TooManyRequestsException:
+      allOf:
+        - $ref: '#/components/schemas/Exception'
+      example:
+        type: TooManyRequestsException
+        message: Too many requests
+    InternalServerException:
+      allOf:
+        - $ref: '#/components/schemas/Exception'
+      example:
+        type: InternalServerException
+        message: Unexpected error
+    
+  responses:
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestException'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotAuthorizedException'
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourceNotFoundException'
+    '429':
+      description: Too many requests to the API
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TooManyRequestsException'
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerException'
