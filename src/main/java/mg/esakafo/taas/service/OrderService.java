@@ -1,9 +1,10 @@
 package mg.esakafo.taas.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -22,9 +23,21 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final DishRepository dishRepository;
+    private final Integer defaultPage = 1;
+    private final Integer defaultPageSize = 8;
 
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public Page<Order> getPreOrders(Integer page, Integer pageSize) {
+
+        if(page != null && pageSize != null){
+            return orderRepository.findAll(
+                PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.DESC, "orderDate"))
+            );
+        }
+        page  = defaultPage;
+        pageSize = defaultPageSize;
+        return orderRepository.findAll(
+            PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.DESC, "orderDate"))
+        );
     }
 
     public Order getOrderById(Long ordersId) {
@@ -36,7 +49,7 @@ public class OrderService {
 
     public Order createOrder(CreateOrderDto createOrderDto) {
         Long number = orderRepository.count();
-        Dish dish = dishRepository.findById(createOrderDto.getDish()).get();
+        Dish dish = dishRepository.findByName(createOrderDto.getDish()).get();
         Order order = new Order();
 
         order.setRef(String.format("REF-%03d", (number + 1)));
@@ -45,6 +58,10 @@ public class OrderService {
         order.setClientName(createOrderDto.getClientName());
         order.setContact(createOrderDto.getContact());
         order.setCategory(dish.getCategory().getLabel());
+
+        dish.setQuantity(dish.getQuantity() - 1);
+        dish.setOrderNumber(dish.getOrderNumber() + 1);
+
         order.setDish(dish);
         order.setStatus(StatusOrder.IN_PROGRESS);
         order.setOrderDate(FormatDate.date());
@@ -75,7 +92,7 @@ public class OrderService {
         }
 
         if(updateOrderDto.getDish() != null && !order.getDish().getId().equals(updateOrderDto.getDish())){
-            Dish dish = dishRepository.findById(updateOrderDto.getDish()).orElseThrow(
+            Dish dish = dishRepository.findByName(updateOrderDto.getDish()).orElseThrow(
                 () -> new IllegalStateException("Can not find Dish by Id")
             );
             order.setDish(dish);

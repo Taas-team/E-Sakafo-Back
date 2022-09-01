@@ -7,5 +7,5 @@ import mg.esakafo.taas.model.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>{
-    
+
 }

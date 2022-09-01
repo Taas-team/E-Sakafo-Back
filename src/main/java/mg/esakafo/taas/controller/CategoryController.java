@@ -2,6 +2,7 @@ package mg.esakafo.taas.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import mg.esakafo.taas.dto.CategoryDto;
 import mg.esakafo.taas.model.Category;
 import mg.esakafo.taas.service.CategoryService;
 
 @RestController
 @RequestMapping("/categories")
 @AllArgsConstructor
+@CrossOrigin
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -33,16 +34,16 @@ public class CategoryController {
 
     @PostMapping
     public Category createCategory(
-        @RequestBody CategoryDto categoryDto
+        @RequestBody Category categoryDto
     ){
         return categoryService.createDish(categoryDto);
     }
 
-    @PutMapping(path = "{categoryId}")
+    @PutMapping(path = "/{categoryId}")
     public Category updateCategoryDetails(
         @PathVariable("categoryId") Long categoryId,
-        @RequestBody CategoryDto categoryDto
+        @RequestBody Category categoryDto
     ){
-        return categoryService.updateDishDetails(categoryId, categoryDto);
+        return categoryService.updateCategoryDetails(categoryId, categoryDto);
     }
 }
