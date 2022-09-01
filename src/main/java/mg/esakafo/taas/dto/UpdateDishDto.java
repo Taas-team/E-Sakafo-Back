@@ -10,7 +10,8 @@ import lombok.Setter;
 public class UpdateDishDto {
     private String name;
     private Float price;
-    private Long category;
+    private String category;
     private Long orderNumber;
     private Long quantity;
+    private String url;
 }

@@ -16,4 +16,5 @@ public class RestDish {
     private String category;
     private Long orderNumber;
     private Long quantity;
+    private String url;
 }

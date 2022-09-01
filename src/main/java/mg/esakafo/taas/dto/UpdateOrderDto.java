@@ -15,7 +15,7 @@ public class UpdateOrderDto {
     private String clientName;
     private String contact;
     private String address;
-    private Long dish;
+    private String dish;
     private Long quantity;
     @Enumerated(EnumType.STRING)
     private StatusOrder status;

@@ -1,27 +1,18 @@
-insert into category (label) values ('lisinopril');
-insert into category (label) values ('Mycophenolic Acid');
-insert into category (label) values ('Olanzapine');
-insert into category (label) values ('Xylocaine');
+insert into category (label) values ('Entrée');
+insert into category (label) values ('Résistance');
+insert into category (label) values ('Dessert');
 
-insert into dish (name, price, category, order_number, quantity) values ('even-keeled', 30759, 3, 2, 12);
-insert into dish (name, price, category, order_number, quantity) values ('workforce', 12857, 4, 1, 17);
-insert into dish (name, price, category, order_number, quantity) values ('homogeneous', 39993, 3, 7, 21);
-insert into dish (name, price, category, order_number, quantity) values ('leverage', 48658, 4, 8, 23);
-insert into dish (name, price, category, order_number, quantity) values ('Versatile', 33826, 3, 6, 10);
-insert into dish (name, price, category, order_number, quantity) values ('algorithm', 37938, 3, 11, 8);
-insert into dish (name, price, category, order_number, quantity) values ('synergy', 21241, 4, 9, 8);
-insert into dish (name, price, category, order_number, quantity) values ('multi-state', 16762, 1, 10, 12);
-insert into dish (name, price, category, order_number, quantity) values ('Customizable', 44251, 1, 1, 25);
-insert into dish (name, price, category, order_number, quantity) values ('eco-centric', 14594, 3, 7, 15);
+insert into dish (name, price, category, quantity, url) values ('feuilletés', 15000, 1, 10, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Recettes-de-feuilletes.jpg?alt=media&token=c29418ac-3c8e-4dcf-9900-61f5d5657dc5');
+insert into dish (name, price, category, quantity, url) values ('Feuilleté de dinde', 20000, 1, 10, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Feuillete-de-dinde.webp?alt=media&token=401848f2-dcd6-4da3-985a-5e7f3dd83fca');
+insert into dish (name, price, category, quantity, url) values ('Samoussas', 10000, 1, 10, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Samoussas.webp?alt=media&token=dccea294-24a8-4d05-a3e9-85be7f36d79f');
+insert into dish (name, price, category, quantity, url) values ('Lentilles bolognaise', 50000, 2, 5, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Recette%20Lentilles%20bolognaise%20au%20chorizo%20Cookeo.jpeg?alt=media&token=a1d24987-6bab-4003-bed7-98c772b06d37');
+insert into dish (name, price, category, quantity, url) values ('Haricots Verts à la Carbonara', 30000, 2, 5, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Haricots%20Verts%20%C3%A0%20la%20Carbonara%20-%20Plat%20et%20Recette.jpeg?alt=media&token=ac4bdecb-d95b-4a88-934e-1b02c2c9f075');
+insert into dish (name, price, category, quantity, url) values ('POULET SAUTE CHASSEUR', 40000, 2, 5, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/POULET%20SAUTE%20%20CHASSEUR%20-%20quelque%20part%20en%20Provence.jpeg?alt=media&token=b00aa4c0-4a53-4d1e-add9-4903ac4ea1b4');
+insert into dish (name, price, category, quantity, url) values ('fraises et meringue', 10000, 3, 20, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Cyril.jpeg?alt=media&token=1f7a0fcd-8cb2-4a2f-bf3f-ec667ec0baf0');
+insert into dish (name, price, category, quantity, url) values ('Tarte Oranaise', 25000, 3, 10, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Tarte%20Oranaise%20_%20Guy%20Demarle.jpeg?alt=media&token=d2a8848d-0019-4460-b29a-4f384b8e3ea4');
+insert into dish (name, price, category, quantity, url) values ('Charlotte au citron', 10000, 3, 5, 'https://firebasestorage.googleapis.com/v0/b/test-upload-firebase-4e8cf.appspot.com/o/Charlotte%20au%20citron%20meringu%C3%A9e%20-%20Recette%20facile.jpeg?alt=media&token=9d24421e-2e12-4c7e-a066-386cb6ff05d1');
 
 
-insert into orders (ref, category, dish, quantity, client_name, contact, address, order_date, status) values ('REF-001', 'Temazepam', 10, 18, 'Frankowski', '5498995830', '96 Loftsgordon Court', '2022-02-07 16:29:22', 'DELIVERED');
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('24249 Northland Point', 'Orange Basil and Lime Antibacterial Foaming Hand Wash', 'Midlar', '6377096968', '2022-05-20 03:14:42', 26, 'REF-002', 'DELIVERED', 2);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('6 Dorton Place', 'all day pain relief', 'Abethell', '4534178328', '2022-01-24 02:37:15', 16, 'REF-003', 'IN_PROGRESS', 9);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('2508 Milwaukee Pass', 'Hog Hair', 'Lepard', '2500031349', '2022-06-08 11:36:29', 12, 'REF-004', 'IN_PROGRESS', 3);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('2682 Pennsylvania Hill', 'Tizanidine', 'Lenden', '5405188239', '2022-06-01 21:43:42', 16, 'REF-005', 'IN_PROGRESS', 2);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('462 Tennyson Terrace', 'Calcium Folic Acid Plus D Chewable', 'Saile', '4122070260', '2021-12-23 10:11:16', 19, 'REF-006', 'DELIVERED', 10);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('885 Towne Alley', 'Leader Stool Softener', 'Stenyng', '1087002672', '2022-01-31 16:05:36', 24, 'REF-007', 'IN_PROGRESS', 7);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('85903 Gerald Drive', 'Alprazolam', 'Stanners', '0773602410', '2021-11-09 23:31:57', 14, 'REF-008', 'IN_PROGRESS', 3);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('14473 Continental Terrace', 'citalopram hydrobromide', 'Hamill', '2041962585', '2021-10-05 16:03:36', 11, 'REF-009', 'IN_PROGRESS', 6);
-insert into orders (address, category, client_name, contact, order_date, quantity, ref, status, dish) values ('99 Fordem Terrace', 'Long Last Makeup 05', 'Medford', '0452428254', '2022-01-23 18:33:40', 24, 'REF-010', 'IN_PROGRESS', 10);
+
+insert into orders (address, category, client_name, contact, quantity, ref, status, dish, order_date) values ('Hei ivandry', 'Entrée', 'Franklin Hyriol', '0330025487', 2, 'REF-001', 'IN_PROGRESS', 1, '2022-09-1 12:00:12');
+insert into orders (address, category, client_name, contact, quantity, ref, status, dish, order_date) values ('Ambohipo', 'Résistance', 'Michellah', '0344785695', 1, 'REF-002', 'DELIVERED', 4, '2022-09-2 13:00:12');

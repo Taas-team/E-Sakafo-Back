@@ -1,9 +1,10 @@
 package mg.esakafo.taas.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -20,9 +21,21 @@ public class DishService {
 
     private final DishRepository dishRepository;
     private final CategoryRepository categoryRepository;
+    private final Integer defaultPage = 1;
+    private final Integer defaultPageSize = 8;
 
-    public List<Dish> getAllDishes() {
-        return dishRepository.findAll();
+    public Page<Dish> getPreDishes(Integer page, Integer pageSize) {
+        if(page != null && pageSize != null){
+            return dishRepository.findAll(
+                PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.DESC, "orderNumber"))
+            );
+        }
+        page = defaultPage;
+        pageSize = defaultPageSize;
+
+        return dishRepository.findAll(
+            PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.DESC, "orderNumber"))
+        );
     }
 
     public Dish getDishById(Long dishId) {
@@ -30,7 +43,7 @@ public class DishService {
     }
 
     public Dish createDish(CreateDishDto createDishDto) {
-        Category category = categoryRepository.findById(createDishDto.getCategory()).get();
+        Category category = categoryRepository.findByLabel(createDishDto.getCategory()).get();
         Dish dish = new Dish();
 
         dish.setName(createDishDto.getName());
@@ -38,6 +51,9 @@ public class DishService {
         dish.setCategory(category);
         dish.setOrderNumber(0L);
         dish.setQuantity(createDishDto.getQuantity());
+        if(createDishDto.getUrl() != null && createDishDto.getUrl().length() > 0){
+            dish.setUrl(createDishDto.getUrl());
+        }
 
         return dishRepository.save(dish);
     }
@@ -64,8 +80,8 @@ public class DishService {
             dish.setName(updateDishDto.getName());
         }
 
-        if(updateDishDto.getCategory() != null && !dish.getCategory().getId().equals(updateDishDto.getCategory())){
-            Category category = categoryRepository.findById(updateDishDto.getCategory()).orElseThrow(
+        if(updateDishDto.getCategory() != null && updateDishDto.getCategory().length() > 0 && !dish.getCategory().getLabel().equals(updateDishDto.getCategory())){
+            Category category = categoryRepository.findByLabel(updateDishDto.getCategory()).orElseThrow(
                 () -> new IllegalStateException("Can not find Category by Id")
             );
             dish.setCategory(category);

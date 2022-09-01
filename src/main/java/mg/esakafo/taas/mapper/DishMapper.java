@@ -15,6 +15,7 @@ public class DishMapper {
         .category(dish.getCategory().getLabel())
         .orderNumber(dish.getOrderNumber())
         .quantity(dish.getQuantity())
+        .url(dish.getUrl())
         .build();
     }
 }

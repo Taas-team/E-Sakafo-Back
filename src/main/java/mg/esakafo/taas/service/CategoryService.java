@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-import mg.esakafo.taas.dto.CategoryDto;
 import mg.esakafo.taas.model.Category;
 import mg.esakafo.taas.repository.CategoryRepository;
 
@@ -25,14 +24,14 @@ public class CategoryService {
         return categoryRepository.findById(categoryId).get();
     }
 
-    public Category createDish(CategoryDto categoryDto) {
+    public Category createDish(Category categoryDto) {
         Category category = new Category();
         category.setLabel(categoryDto.getLabel());
         return categoryRepository.save(category);
     }
 
     @Transactional
-    public Category updateDishDetails(Long categoryId, CategoryDto categoryDto) {
+    public Category updateCategoryDetails(Long categoryId, Category categoryDto) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(
             () -> new IllegalStateException("Can not find Category by Id")
         );

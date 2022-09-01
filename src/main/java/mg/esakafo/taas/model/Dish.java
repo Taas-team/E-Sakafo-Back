@@ -34,12 +34,15 @@ public class Dish implements Serializable{
     private Category category;
     private Long orderNumber;
     private Long quantity;
+    
+    private String url;
 
 
-    public Dish(String name, Float price, Category category, Long quantity) {
+    public Dish(String name, Float price, Category category, Long quantity, String url) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.quantity = quantity;
+        this.url = url;
     }
 }
